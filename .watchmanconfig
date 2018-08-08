@@ -1,0 +1,9 @@
+// 20180808145004
+// https://raw.githubusercontent.com/chadhietala/ember-glimmer-components/master/.watchmanconfig
+
+{
+  "ignore_dirs": [
+    "tmp",
+    "dist"
+  ]
+}

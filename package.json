@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "babel-core": "^6.26.3"
+  },
+  "name": "babel-plugin-transform-tracked-properties",
+  "version": "0.0.0",
+  "description": "Transform tracked properties in Ember components",
+  "main": "index.js",
+  "repository": "git@github.com:chadhietala/babel-plugin-transform-tracked-properties.git",
+  "author": " ",
+  "license": "MIT"
+}
