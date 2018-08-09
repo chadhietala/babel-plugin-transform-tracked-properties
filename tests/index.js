@@ -3,7 +3,7 @@ const plugin = require('../index');
 const babel = require('babel-core');
 
 const trimAndRemoveNewLines = str => {
-  str.split(/\n/).join('').trim();
+  return str.split(/\n/).join('').trim();
 };
 
 const opts = {
@@ -36,4 +36,16 @@ import { tracked } from '@ember/component';
 import jquery from 'jquery';
   `;
   assert.equal(trimAndRemoveNewLines(transformed), trimAndRemoveNewLines(expected));
-})
+});
+
+QUnit.test('transform import, with aliased ImportSpecifier', assert => {
+  const transformed = babel.transform(`
+import { tracked as gTracked } from '@glimmer/component';
+import jquery from 'jquery';
+`, opts).code;
+  const expected = `
+import { tracked as gTracked } from '@ember/component';
+import jquery from 'jquery';
+  `;
+  assert.equal(trimAndRemoveNewLines(transformed), trimAndRemoveNewLines(expected));
+});

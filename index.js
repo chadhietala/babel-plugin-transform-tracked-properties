@@ -6,18 +6,18 @@ module.exports = function() {
     visitor: {
       ImportDeclaration(path) {
         if (path.node.source.value === '@glimmer/component') {
-          let hasTrackedImport = false;
+          let trackedSpecifer;
           path.node.specifiers = path.node.specifiers.filter(specifier => {
             if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'tracked') {
-              hasTrackedImport = true;
+              trackedSpecifer = specifier;
               return false;
             }
             return true;
           });
 
-          if (hasTrackedImport) {
+          if (trackedSpecifer) {
             path.insertAfter(
-              types.importDeclaration([types.importSpecifier(types.identifier('tracked'), types.identifier('tracked'))], types.stringLiteral('@ember/component'))
+              types.importDeclaration([trackedSpecifer], types.stringLiteral('@ember/component'))
             )
           }
 
